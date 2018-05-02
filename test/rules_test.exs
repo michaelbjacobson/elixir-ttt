@@ -29,29 +29,29 @@ defmodule RulesTest do
 	end
 
 	test "Rules.game_is_won_by?/2 returns a boolean indicating whether the game has been won by the given player" do
-		test_game = Game.new(@game_board_won_by_x, Player.new("X"), Player.new("O"))
+		test_game = Game.new(@game_board_won_by_x, Player.new("X", :human), Player.new("O", :human))
 		assert Rules.game_is_won_by?(test_game, test_game.player_1) == true
 		assert Rules.game_is_won_by?(test_game, test_game.player_2) == false
 	end
 
 	test "Rules.game_is_won?/1 returns a boolean indicating whether the given game has been won by either player" do
-		test_game_won = Game.new(@game_board_won_by_x, Player.new("X"), Player.new("O"))
-		test_game_not_yet_won = Game.new(@blank_game_board, Player.new("X"), Player.new("O"))
+		test_game_won = Game.new(@game_board_won_by_x, Player.new("X", :human), Player.new("O", :human))
+		test_game_not_yet_won = Game.new(@blank_game_board, Player.new("X", :human), Player.new("O", :human))
 		assert Rules.game_is_won?(test_game_won) == true
 		assert Rules.game_is_won?(test_game_not_yet_won) == false
 	end
 
 	test "Rules.game_is_tied?/1 returns a boolean indicating whether or not the given game is tied" do
-		test_game_tied = Game.new(@tied_game_board, Player.new("X"), Player.new("O"))
-		test_game_not_tied = Game.new(@blank_game_board, Player.new("X"), Player.new("O"))
+		test_game_tied = Game.new(@tied_game_board, Player.new("X", :human), Player.new("O", :human))
+		test_game_not_tied = Game.new(@blank_game_board, Player.new("X", :human), Player.new("O", :human))
 		assert Rules.game_is_tied?(test_game_tied) == true
 		assert Rules.game_is_tied?(test_game_not_tied) == false
 	end
 
 	test "Rules.game_is_over?/1 returns a boolean indicating whether the given game is over or not" do
-		test_game_blank = Game.new(@blank_game_board, Player.new("X"), Player.new("O"))
-		test_game_tied = Game.new(@tied_game_board, Player.new("X"), Player.new("O"))
-		test_game_won = Game.new(@game_board_won_by_x, Player.new("X"), Player.new("O"))
+		test_game_blank = Game.new(@blank_game_board, Player.new("X", :human), Player.new("O", :human))
+		test_game_tied = Game.new(@tied_game_board, Player.new("X", :human), Player.new("O", :human))
+		test_game_won = Game.new(@game_board_won_by_x, Player.new("X", :human), Player.new("O", :human))
 		assert Rules.game_is_over?(test_game_blank) == false
 		assert Rules.game_is_over?(test_game_tied) == true
 		assert Rules.game_is_over?(test_game_won) == true
