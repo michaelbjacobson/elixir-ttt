@@ -76,4 +76,13 @@ defmodule BoardTest do
     end
   end
 
+  test "Board.available_tile_indices/1 returns a list of all available tile indices for the given board" do
+    expected = [2, 3, 4, 5, 6, 7, 8]
+    actual = Board.new()
+             |> Board.update(1, "X")
+             |> Board.update(9, "O")
+             |> Board.available_tile_indices()
+    assert actual == expected
+  end
+
 end

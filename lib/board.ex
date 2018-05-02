@@ -18,6 +18,12 @@ defmodule TicTacToe.Board do
     """
   end
 
+  def available_tile_indices(board) do
+    Enum.filter(board, fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
+    |> Enum.into(%{})
+    |> Map.keys()
+  end
+
   def update(board, tile_index, player_symbol) do
     %{ board | tile_index => player_symbol }
   end

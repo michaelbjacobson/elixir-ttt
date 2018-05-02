@@ -20,6 +20,13 @@ defmodule TicTacToe.Game do
     }
   end
 
+  def take_turn(game, move_index) do
+    game
+    |> update_board(move_index)
+    |> switch_players()
+    |> assert_is_over()
+  end
+
   def switch_players(game) do
     cond do
       game.current_player == game.player_1 -> %{ game | current_player: game.player_2}
