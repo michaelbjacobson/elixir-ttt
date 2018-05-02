@@ -1,5 +1,6 @@
 defmodule TicTacToe.Game do
   alias TicTacToe.Board
+  alias TicTacToe.Rules
 
   defstruct [
     :board,
@@ -29,6 +30,10 @@ defmodule TicTacToe.Game do
   def update_board(game, move_index) do
     updated_board = Board.update(game.board, move_index, game.current_player.marker)
     %{ game | board: updated_board }
+  end
+
+  def assert_is_over(game) do
+    %{ game | is_over?: Rules.game_is_over?(game) }
   end
 
 end

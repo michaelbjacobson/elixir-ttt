@@ -32,4 +32,13 @@ defmodule GameTest do
     assert actual == expected
   end
 
+  test "Game.assert_is_over/1 returns a new Game struct with the is_over? field updated based on the board" do
+    game_board_won_by_x = %{1 => "1", 2 => "2", 3 => "X", 4 => "4", 5 => "X", 6 => "6", 7 => "X", 8 => "8", 9 => "9"}
+    expected = true
+    actual = Game.new(game_board_won_by_x, Player.new("X"), Player.new("O"))
+             |> Game.assert_is_over()
+             |> (fn game -> game.is_over? end).()
+    assert actual == expected
+  end
+
 end
