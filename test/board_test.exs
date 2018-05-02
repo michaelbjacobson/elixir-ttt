@@ -24,4 +24,14 @@ defmodule BoardTest do
     assert actual == expected
   end
 
+  test "Board.update/3 returns a new board, marked at the indicated index" do
+    expected = %{
+      1 => "1", 2 => "2", 3 => "3",
+      4 => "4", 5 => "X", 6 => "6",
+      7 => "7", 8 => "8", 9 => "9"
+    }
+    actual = Board.new() |> Board.update(5, "X")
+    assert actual == expected
+  end
+
 end
