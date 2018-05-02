@@ -34,4 +34,46 @@ defmodule BoardTest do
     assert actual == expected
   end
 
+  test "Board.is_empty?/1 returns a boolean indicating whether the given board is empty" do
+    args = [
+      { Board.new(), true },
+      { Board.new() |> Board.update(1, "X"), false }
+    ]
+    for {arg, expected_result} <- args do
+      assert Board.is_empty?(arg) == expected_result
+    end
+  end
+
+  test "Board.is_full?/1 returns a boolean indicating whether the given board is full" do
+    test_board = %{1 => "1", 2 => "X", 3 => "O", 4 => "X", 5 => "O", 6 => "X", 7 => "O", 8 => "X", 9 => "O"}
+    args = [
+      { Board.new(), false },
+      { test_board, false },
+      { Board.update(test_board, 1, "O"), true }
+    ]
+    for {arg, expected_result} <- args do
+      assert Board.is_full?(arg) == expected_result
+    end
+  end
+
+  test "Board.tile_is_occupied?/2 returns a boolean indicating whether the given tile is occupied" do
+    args = [
+      { {1, "1"}, false },
+      { {1, "X"}, true }
+    ]
+    for {arg, expected_result} <- args do
+      assert Board.tile_is_occupied?(elem(arg, 0), elem(arg, 1)) == expected_result
+    end
+  end
+
+  test "Board.tile_is_free?/2 returns a boolean indicating whether the given tile is free" do
+    args = [
+      { {1, "1"}, true },
+      { {1, "O"}, false }
+    ]
+    for {arg, expected_result} <- args do
+      assert Board.tile_is_free?(elem(arg, 0), elem(arg, 1)) == expected_result
+    end
+  end
+
 end

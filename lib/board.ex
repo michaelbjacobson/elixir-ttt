@@ -22,4 +22,20 @@ defmodule TicTacToe.Board do
     %{ board | tile_index => player_symbol }
   end
 
+  def tile_is_free?(index, tile_content) do
+    Integer.to_string(index) == tile_content
+  end
+
+  def tile_is_occupied?(index, tile_content) do
+    Integer.to_string(index) != tile_content
+  end
+
+  def is_full?(board) do
+    Enum.all?(board, fn {index, tile_content} -> tile_is_occupied?(index, tile_content) end)
+  end
+
+  def is_empty?(board) do
+    Enum.all?(board, fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
+  end
+
 end
