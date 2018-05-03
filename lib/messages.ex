@@ -22,4 +22,6 @@ defmodule TicTacToe.Messages do
     end
   end
 
+  def index_out_of_bounds, do: "Please enter only a single whole number between 1 and 9 inclusive..."
+
 end

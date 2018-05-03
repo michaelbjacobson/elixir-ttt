@@ -44,4 +44,8 @@ defmodule TicTacToe.Board do
     Enum.all?(board, fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
   end
 
+  def tile_index_in_bounds?(board, tile_index) do
+    Map.keys(board) |> Enum.member?(tile_index)
+  end
+
 end

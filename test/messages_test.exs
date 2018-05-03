@@ -45,4 +45,10 @@ defmodule MessagesTest do
     end
   end
 
+  test "Messages.index_out_of_bounds/0 returns a message string informing the user that a given index is out of bounds" do
+    expected = "Please enter only a single whole number between 1 and 9 inclusive..."
+    actual = Messages.index_out_of_bounds()
+    assert actual == expected
+  end
+
 end

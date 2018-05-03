@@ -85,4 +85,16 @@ defmodule BoardTest do
     assert actual == expected
   end
 
+  test "Board.tile_index_in_bounds?/2 returns a boolean indicating whether or not the given tile index is in bounds of the given board" do
+    args = [
+      { -1, false },
+      { 5, true },
+      { 9, true },
+      { 10, false }
+    ]
+    for {arg, expected_result} <- args do
+      assert Board.tile_index_in_bounds?(Board.new(), arg) == expected_result
+    end
+  end
+
 end
