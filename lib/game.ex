@@ -20,7 +20,7 @@ defmodule TicTacToe.Game do
     }
   end
 
-  def take_turn(game, move_index) do
+  def take_turn(move_index, game) do
     game
     |> update_board(move_index)
     |> switch_players()

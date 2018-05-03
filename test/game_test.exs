@@ -7,10 +7,10 @@ defmodule GameTest do
   test "Game.new/3 returns a new Game struct populated with the arguments given" do
     expected = %TicTacToe.Game{
       board: %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9"},
-      current_player: %TicTacToe.Player{io: IO, module: :human, marker: "X"},
+      current_player: %TicTacToe.Player{input: IO, module: :human, marker: "X"},
       is_over?: false,
-      player_1: %TicTacToe.Player{io: IO, module: :human, marker: "X"},
-      player_2: %TicTacToe.Player{io: IO, module: :human, marker: "O"}
+      player_1: %TicTacToe.Player{input: IO, module: :human, marker: "X"},
+      player_2: %TicTacToe.Player{input: IO, module: :human, marker: "O"}
     }
     actual = Game.new(Board.new, Player.new("X", :human), Player.new("O", :human))
     assert actual == expected

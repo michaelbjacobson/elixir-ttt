@@ -3,15 +3,15 @@ defmodule PlayerTest do
   alias TicTacToe.Player
 
   defmodule MockComputer do
-    def get_index(_available_tile_indices, _io), do: "Computer.get_index/2 called!"
+    def get_index(_available_tile_indices, _input), do: "Computer.get_index/2 called!"
   end
 
   defmodule MockHuman do
-    def get_index(_available_tile_indices, _io), do: "Human.get_index/2 called!"
+    def get_index(_available_tile_indices, _input), do: "Human.get_index/2 called!"
   end
 
   test "Player.new/3 returns a new player struct" do
-    expected = %TicTacToe.Player{io: IO, module: :human, marker: "X"}
+    expected = %TicTacToe.Player{input: IO, module: :human, marker: "X"}
     actual = Player.new("X", :human)
     assert actual == expected
   end
