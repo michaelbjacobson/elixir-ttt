@@ -10,8 +10,8 @@ defmodule TicTacToe.Player do
     %TicTacToe.Player{ marker: marker, module: module, input: input }
   end
 
-  def get_move(player, available_tile_indices) do
-    player.module.get_index(available_tile_indices, player.input)
+  def get_move(player, game) do
+    player.module.get_index(game, player.input)
   end
 
 end

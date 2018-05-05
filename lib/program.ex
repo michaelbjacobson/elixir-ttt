@@ -1,11 +1,15 @@
 defmodule TicTacToe.Program do
-  alias TicTacToe.{ Game, Rules, Messages, Board, Player, Human, Computer }
+  alias TicTacToe.{ Game, Rules, Messages, Board, Player, Human, EasyComputer, ImpossibleComputer }
 
   @human_vs_human Game.new(Board.new(), Player.new("X", Human), Player.new("O", Human))
-  @human_vs_computer Game.new(Board.new(), Player.new("X", Human), Player.new("O", Computer))
+  @human_vs_computer Game.new(Board.new(), Player.new("X", Human), Player.new("O", ImpossibleComputer))
+  @computer_vs_human Game.new(Board.new(), Player.new("X", ImpossibleComputer), Player.new("O", Human))
+  @computer_vs_computer Game.new(Board.new(), Player.new("X", ImpossibleComputer), Player.new("O", ImpossibleComputer))
 
   def run(1), do: play_game(@human_vs_human)
   def run(2), do: play_game(@human_vs_computer)
+  def run(3), do: play_game(@computer_vs_human)
+  def run(4), do: play_game(@computer_vs_computer)
 
   def play_game(game) do
     clear_screen()
@@ -21,7 +25,7 @@ defmodule TicTacToe.Program do
 
   def get_next_move(game) do
     display_prompt(game)
-    input = Player.get_move(game.current_player, Board.available_tile_indices(game.board))
+    input = Player.get_move(game.current_player, game)
     if input_is_valid?(input, game) do
       String.to_integer(input)
     else

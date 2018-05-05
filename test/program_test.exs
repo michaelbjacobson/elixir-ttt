@@ -9,7 +9,7 @@ defmodule ProgramTest do
   @board_won_by_x %{ 1 => "X", 2 => "X", 3 => "X", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9" }
   @board_won_by_o %{ 1 => "O", 2 => "O", 3 => "O", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9" }
   @player_1 TicTacToe.Player.new("X", TicTacToe.Human)
-  @player_2 TicTacToe.Player.new("O", TicTacToe.Computer)
+  @player_2 TicTacToe.Player.new("O", TicTacToe.ImpossibleComputer)
 
   test "Program.display_board/1" do
     expected = """

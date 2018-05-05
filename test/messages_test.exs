@@ -11,7 +11,7 @@ defmodule MessagesTest do
 
   test "Messages.move_prompt/1 returns the relevant message string for the current player" do
     human_x = Player.new("X", TicTacToe.Human)
-    computer_o = Player.new("O", TicTacToe.Computer)
+    computer_o = Player.new("O", TicTacToe.ImpossibleComputer)
     args = [
       { human_x, "Player X, please choose a tile..." },
       { computer_o, "Computer O is taking it's turn..." }
@@ -35,7 +35,7 @@ defmodule MessagesTest do
 
   test "Messages.winner/1 returns a message string displaying the winner of the game" do
     human_o = Player.new("O", TicTacToe.Human)
-    computer_x = Player.new("X", TicTacToe.Computer)
+    computer_x = Player.new("X", TicTacToe.ImpossibleComputer)
     args = [
       { human_o, "Player O wins!" },
       { computer_x, "Computer X wins!" }

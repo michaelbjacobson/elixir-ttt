@@ -4,7 +4,8 @@ defmodule TicTacToe.Messages do
 
   def move_prompt(player) do
     case player.module do
-      TicTacToe.Computer -> "Computer #{player.marker} is taking it's turn..."
+      TicTacToe.ImpossibleComputer -> "Computer #{player.marker} is taking it's turn..."
+      TicTacToe.EasyComputer -> "Computer #{player.marker} is taking it's turn..."
       TicTacToe.Human -> "Player #{player.marker}, please choose a tile..."
       _other -> "Please choose a tile..."
     end
@@ -16,7 +17,8 @@ defmodule TicTacToe.Messages do
 
   def winner(player) do
     case player.module do
-      TicTacToe.Computer -> "Computer #{player.marker} wins!"
+      TicTacToe.ImpossibleComputer -> "Computer #{player.marker} wins!"
+      TicTacToe.EasyComputer -> "Computer #{player.marker} wins!"
       TicTacToe.Human -> "Player #{player.marker} wins!"
       _other -> "#{player.marker} wins!"
     end

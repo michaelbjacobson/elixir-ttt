@@ -48,4 +48,8 @@ defmodule TicTacToe.Board do
     Map.keys(board) |> Enum.member?(tile_index)
   end
 
+  def corner_indices(_board) do
+    [1, 3, 7, 9]
+  end
+
 end
