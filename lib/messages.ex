@@ -13,6 +13,17 @@ defmodule TicTacToe.Messages do
 
   def tile_occupied, do: "That tile is already occupied. Please select a free tile..."
 
+  def game_options do
+    """
+    Please choose a game type...
+
+    1. Human vs Human
+    2. Human vs Computer
+    3. Computer vs Human
+    4. Computer vs Computer
+    """
+  end
+
   def tie_game, do: "Tie game!"
 
   def winner(player) do

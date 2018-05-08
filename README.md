@@ -31,7 +31,7 @@ Good question. Just follow these simple steps:
   1. Using your terminal, navigate into the main Tic-Tac-Toe directory eg. `$ cd ~/elixir-ttt`
   2. At the root of the elixir-ttt directory, run the following command `$ mix compile`
   3. Once the process started in step 2 has finished, run the following command `$ iex -S mix`
-  4. Inside the Elixir shell entered in the previous step, enter the following command `iex(1)> TicTacToe.Program.run(2)`
+  4. Inside the Elixir shell entered in the previous step, enter the following command `iex(1)> TicTacToe.Program.run()`
   5. Enjoy the game!
 
 #

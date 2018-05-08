@@ -51,4 +51,17 @@ defmodule MessagesTest do
     assert actual == expected
   end
 
+  test "Messages.game_options/0 returns a message string containing the numbered game options" do
+    expected = """
+               Please choose a game type...
+
+               1. Human vs Human
+               2. Human vs Computer
+               3. Computer vs Human
+               4. Computer vs Computer
+               """
+    actual = Messages.game_options()
+    assert actual == expected
+  end
+
 end

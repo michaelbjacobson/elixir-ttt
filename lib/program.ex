@@ -1,15 +1,22 @@
 defmodule TicTacToe.Program do
-  alias TicTacToe.{ Game, Rules, Messages, Board, Player, Human, EasyComputer, ImpossibleComputer }
+  alias TicTacToe.{ Game, Rules, Messages, Board, Player, Human, ImpossibleComputer }
 
   @human_vs_human Game.new(Board.new(), Player.new("X", Human), Player.new("O", Human))
   @human_vs_computer Game.new(Board.new(), Player.new("X", Human), Player.new("O", ImpossibleComputer))
   @computer_vs_human Game.new(Board.new(), Player.new("X", ImpossibleComputer), Player.new("O", Human))
   @computer_vs_computer Game.new(Board.new(), Player.new("X", ImpossibleComputer), Player.new("O", ImpossibleComputer))
 
-  def run(1), do: play_game(@human_vs_human)
-  def run(2), do: play_game(@human_vs_computer)
-  def run(3), do: play_game(@computer_vs_human)
-  def run(4), do: play_game(@computer_vs_computer)
+  def run do
+    clear_screen()
+    Messages.welcome() |> IO.puts()
+    game_type = get_game_type()
+    case game_type do
+      1 -> play_game(@human_vs_human)
+      2 -> play_game(@human_vs_computer)
+      3 -> play_game(@computer_vs_human)
+      4 -> play_game(@computer_vs_computer)
+    end
+  end
 
   def play_game(game) do
     clear_screen()
@@ -31,6 +38,13 @@ defmodule TicTacToe.Program do
     else
       get_next_move(game)
     end
+  end
+
+  def get_game_type do
+    Messages.game_options() |> IO.puts()
+    IO.gets("> ")
+    |> String.trim()
+    |> String.to_integer()
   end
 
   def display_game_over_message(game) do

@@ -13,12 +13,12 @@ defmodule ProgramTest do
 
   test "Program.display_board/1" do
     expected = """
-     1 | 2 | 3
-    ---+---+---
-     4 | 5 | 6
-    ---+---+---
-     7 | 8 | 9\n
-    """
+                1 | 2 | 3
+               ---+---+---
+                4 | 5 | 6
+               ---+---+---
+                7 | 8 | 9\n
+               """
     actual = capture_io(fn -> Program.display_board(Game.new(@blank_board, @player_1, @player_2)) end)
     assert actual == expected
   end
