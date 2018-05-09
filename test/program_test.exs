@@ -5,9 +5,9 @@ defmodule ProgramTest do
   import ExUnit.CaptureIO
 
   @blank_board TicTacToe.Board.new()
-  @tied_board %{ 1 => "X", 2 => "O", 3 => "X", 4 => "O", 5 => "O", 6 => "X", 7 => "X", 8 => "X", 9 => "O" }
-  @board_won_by_x %{ 1 => "X", 2 => "X", 3 => "X", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9" }
-  @board_won_by_o %{ 1 => "O", 2 => "O", 3 => "O", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9" }
+  @tied_board %{ 1 => "X", 2 => "O", 3 => "X", 4 => "O", 5 => "O", 6 => "X", 7 => "X", 8 => "X", 9 => "O", :width => 3 }
+  @board_won_by_x %{ 1 => "X", 2 => "X", 3 => "X", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", :width => 3 }
+  @board_won_by_o %{ 1 => "O", 2 => "O", 3 => "O", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", :width => 3 }
   @player_1 TicTacToe.Player.new("X", TicTacToe.Human)
   @player_2 TicTacToe.Player.new("O", TicTacToe.ImpossibleComputer)
 
@@ -17,7 +17,7 @@ defmodule ProgramTest do
                ---+---+---
                 4 | 5 | 6
                ---+---+---
-                7 | 8 | 9\n
+                7 | 8 | 9\n\n
                """
     actual = capture_io(fn -> Program.display_board(Game.new(@blank_board, @player_1, @player_2)) end)
     assert actual == expected

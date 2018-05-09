@@ -4,9 +4,9 @@ defmodule RulesTest do
 	alias TicTacToe.Game
 	alias TicTacToe.Player
 
-	@blank_game_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9"}
-	@game_board_won_by_x %{1 => "1", 2 => "2", 3 => "X", 4 => "4", 5 => "X", 6 => "6", 7 => "X", 8 => "8", 9 => "9"}
-	@tied_game_board %{1 => "X", 2 => "X", 3 => "O", 4 => "O", 5 => "O", 6 => "X", 7 => "X", 8 => "X", 9 => "O"}
+	@blank_game_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", :width => 3}
+	@game_board_won_by_x %{1 => "1", 2 => "2", 3 => "X", 4 => "4", 5 => "X", 6 => "6", 7 => "X", 8 => "8", 9 => "9", :width => 3}
+	@tied_game_board %{1 => "X", 2 => "X", 3 => "O", 4 => "O", 5 => "O", 6 => "X", 7 => "X", 8 => "X", 9 => "O", :width => 3}
 
 	test "Rules.winning_index_combos/0 returns a two dimensional list containing all the winning combos" do
 		expected = [
@@ -14,7 +14,7 @@ defmodule RulesTest do
 	    [1, 4, 7], [2, 5, 8], [3, 6, 9],
 	    [1, 5, 9], [3, 5, 7]
 	  ]
-		actual = Rules.winning_index_combos()
+		actual = Rules.winning_index_combos(Game.new(@blank_game_board, Player.new("X", :human), Player.new("O", :human)))
 		assert actual == expected
 	end
 

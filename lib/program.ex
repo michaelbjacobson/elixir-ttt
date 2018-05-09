@@ -1,20 +1,20 @@
 defmodule TicTacToe.Program do
-  alias TicTacToe.{ Game, Rules, Messages, Board, Player, Human, ImpossibleComputer }
-
-  @human_vs_human Game.new(Board.new(), Player.new("X", Human), Player.new("O", Human))
-  @human_vs_computer Game.new(Board.new(), Player.new("X", Human), Player.new("O", ImpossibleComputer))
-  @computer_vs_human Game.new(Board.new(), Player.new("X", ImpossibleComputer), Player.new("O", Human))
-  @computer_vs_computer Game.new(Board.new(), Player.new("X", ImpossibleComputer), Player.new("O", ImpossibleComputer))
+  alias TicTacToe.{ Game, Rules, Messages, Board, BoardFormatter, Player, Human, ImpossibleComputer, EasyComputer }
 
   def run do
     clear_screen()
     Messages.welcome() |> IO.puts()
     game_type = get_game_type()
     case game_type do
-      1 -> play_game(@human_vs_human)
-      2 -> play_game(@human_vs_computer)
-      3 -> play_game(@computer_vs_human)
-      4 -> play_game(@computer_vs_computer)
+      1 -> Game.new(Board.new(3), Player.new("X", Human), Player.new("O", Human)) |> play_game()
+      2 -> Game.new(Board.new(3), Player.new("X", Human), Player.new("O", ImpossibleComputer)) |> play_game()
+      3 -> Game.new(Board.new(3), Player.new("X", ImpossibleComputer), Player.new("O", Human)) |> play_game()
+      4 -> Game.new(Board.new(3), Player.new("X", ImpossibleComputer), Player.new("O", ImpossibleComputer)) |> play_game()
+
+      5 -> Game.new(Board.new(4), Player.new("X", Human), Player.new("O", Human)) |> play_game()
+      6 -> Game.new(Board.new(4), Player.new("X", Human), Player.new("O", EasyComputer)) |> play_game()
+      7 -> Game.new(Board.new(4), Player.new("X", EasyComputer), Player.new("O", Human)) |> play_game()
+      8 -> Game.new(Board.new(4), Player.new("X", EasyComputer), Player.new("O", EasyComputer)) |> play_game()
     end
   end
 
@@ -76,7 +76,7 @@ defmodule TicTacToe.Program do
   end
 
   def display_board(game) do
-    Board.format_for_display(game.board) |> IO.puts()
+    BoardFormatter.format_for_display(game.board) |> IO.puts()
   end
 
 end

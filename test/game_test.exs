@@ -6,7 +6,7 @@ defmodule GameTest do
 
   test "Game.new/3 returns a new Game struct populated with the arguments given" do
     expected = %TicTacToe.Game{
-      board: %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9"},
+      board: %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", :width => 3},
       current_player: %TicTacToe.Player{input: IO, module: :human, marker: "X"},
       is_over?: false,
       player_1: %TicTacToe.Player{input: IO, module: :human, marker: "X"},
@@ -33,7 +33,7 @@ defmodule GameTest do
   end
 
   test "Game.assert_is_over/1 returns a new Game struct with the is_over? field updated based on the board" do
-    game_board_won_by_x = %{1 => "1", 2 => "2", 3 => "X", 4 => "4", 5 => "X", 6 => "6", 7 => "X", 8 => "8", 9 => "9"}
+    game_board_won_by_x = %{1 => "1", 2 => "2", 3 => "X", 4 => "4", 5 => "X", 6 => "6", 7 => "X", 8 => "8", 9 => "9", :width => 3}
     expected = true
     actual = Game.new(game_board_won_by_x, Player.new("X", :human), Player.new("O", :human))
              |> Game.assert_is_over()

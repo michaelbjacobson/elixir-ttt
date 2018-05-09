@@ -55,10 +55,17 @@ defmodule MessagesTest do
     expected = """
                Please choose a game type...
 
+               3 x 3 Games:
                1. Human vs Human
                2. Human vs Computer
                3. Computer vs Human
                4. Computer vs Computer
+
+               4 x 4 Games:
+               5. Human vs Human
+               6. Human vs Computer
+               7. Computer vs Human
+               8. Computer vs Computer
                """
     actual = Messages.game_options()
     assert actual == expected

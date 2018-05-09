@@ -1,25 +1,16 @@
 defmodule TicTacToe.Board do
 
-  def new do
-    %{
-      1 => "1", 2 => "2", 3 => "3",
-      4 => "4", 5 => "5", 6 => "6",
-      7 => "7", 8 => "8", 9 => "9"
-    }
-  end
-
-  def format_for_display(board) do
-    """
-     #{board[1]} | #{board[2]} | #{board[3]}
-    ---+---+---
-     #{board[4]} | #{board[5]} | #{board[6]}
-    ---+---+---
-     #{board[7]} | #{board[8]} | #{board[9]}
-    """
+  def new(width \\ 3) do
+    1..(width * width)
+    |> Enum.map(fn index -> { index, Integer.to_string(index) } end)
+    |> Map.new()
+    |> Map.put(:width, width)
   end
 
   def available_tile_indices(board) do
-    Enum.filter(board, fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
+    board
+    |> Map.delete(:width)
+    |> Enum.filter(fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
     |> Enum.into(%{})
     |> Map.keys()
   end
@@ -37,19 +28,57 @@ defmodule TicTacToe.Board do
   end
 
   def is_full?(board) do
-    Enum.all?(board, fn {index, tile_content} -> tile_is_occupied?(index, tile_content) end)
+    board
+    |> Map.delete(:width)
+    |> Enum.all?(fn {index, tile_content} -> tile_is_occupied?(index, tile_content) end)
   end
 
   def is_empty?(board) do
-    Enum.all?(board, fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
+    board
+    |> Map.delete(:width)
+    |> Enum.all?(fn {index, tile_content} -> tile_is_free?(index, tile_content) end)
   end
 
   def tile_index_in_bounds?(board, tile_index) do
     Map.keys(board) |> Enum.member?(tile_index)
   end
 
-  def corner_indices(_board) do
-    [1, 3, 7, 9]
+  def corners(board) do
+    width = board[:width]
+    [1, width, ((width * width) - (width - 1)), (width * width)]
+  end
+
+  def rows(board) do
+    board
+    |> Map.delete(:width)
+    |> Map.keys()
+    |> Enum.chunk_every(board[:width])
+  end
+
+  def columns(board) do
+    board
+    |> rows()
+    |> List.zip()
+    |> Enum.map(&Tuple.to_list(&1))
+  end
+
+  def diagonals(board) do
+    [left_to_right_diagonal(board), right_to_left_diagonal(board)]
+  end
+
+  defp left_to_right_diagonal(board) do
+    board
+    |> rows
+    |> Enum.with_index
+    |> Enum.map(fn {row, index} -> Enum.at(row, index) end)
+  end
+
+  defp right_to_left_diagonal(board) do
+    board
+    |> rows
+    |> Enum.map(fn row -> Enum.reverse(row) end)
+    |> Enum.with_index
+    |> Enum.map(fn {row, index} -> Enum.at(row, index) end)
   end
 
 end

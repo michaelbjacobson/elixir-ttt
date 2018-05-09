@@ -1,14 +1,8 @@
 defmodule TicTacToe.Rules do
   alias TicTacToe.Board
 
-  @winning_index_combos [
-    [1, 2, 3], [4, 5, 6], [7, 8, 9],
-    [1, 4, 7], [2, 5, 8], [3, 6, 9],
-    [1, 5, 9], [3, 5, 7]
-  ]
-
-  def winning_index_combos do
-    @winning_index_combos
+  def winning_index_combos(game) do
+    Board.rows(game.board) ++ Board.columns(game.board) ++ Board.diagonals(game.board)
   end
 
   def game_is_over?(game) do
@@ -20,7 +14,7 @@ defmodule TicTacToe.Rules do
   end
 
   def game_is_won_by?(game, player) do
-    Enum.any?(winning_index_combos(), fn combo -> is_winning_combo?(game.board, combo, player.marker) end)
+    Enum.any?(winning_index_combos(game), fn combo -> is_winning_combo?(game.board, combo, player.marker) end)
   end
 
   def game_is_tied?(game) do
@@ -28,8 +22,6 @@ defmodule TicTacToe.Rules do
   end
 
   def is_winning_combo?(board, combo, player_marker) do
-    board[Enum.at(combo, 0)] == player_marker &&
-      board[Enum.at(combo, 1)] == player_marker &&
-      board[Enum.at(combo, 2)] == player_marker
+    Enum.all?(combo, fn index -> board[index] == player_marker end)
   end
 end

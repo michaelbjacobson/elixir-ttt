@@ -11,7 +11,7 @@ defmodule TicTacToe.ImpossibleComputer do
 
   defp opening_gambit(board) do
     board
-    |> Board.corner_indices()
+    |> Board.corners()
     |> Enum.random()
   end
 

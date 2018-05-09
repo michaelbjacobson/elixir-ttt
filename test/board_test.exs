@@ -6,21 +6,10 @@ defmodule BoardTest do
     expected = %{
       1 => "1", 2 => "2", 3 => "3",
       4 => "4", 5 => "5", 6 => "6",
-      7 => "7", 8 => "8", 9 => "9"
+      7 => "7", 8 => "8", 9 => "9",
+      :width => 3
     }
     actual = Board.new()
-    assert actual == expected
-  end
-
-  test "Board.format_for_display/0 returns a formatted board string" do
-    expected = """
-     1 | 2 | 3
-    ---+---+---
-     4 | 5 | 6
-    ---+---+---
-     7 | 8 | 9
-    """
-    actual = Board.new() |> Board.format_for_display()
     assert actual == expected
   end
 
@@ -28,7 +17,8 @@ defmodule BoardTest do
     expected = %{
       1 => "1", 2 => "2", 3 => "3",
       4 => "4", 5 => "X", 6 => "6",
-      7 => "7", 8 => "8", 9 => "9"
+      7 => "7", 8 => "8", 9 => "9",
+      :width => 3
     }
     actual = Board.new() |> Board.update(5, "X")
     assert actual == expected
@@ -45,7 +35,7 @@ defmodule BoardTest do
   end
 
   test "Board.is_full?/1 returns a boolean indicating whether the given board is full" do
-    test_board = %{1 => "1", 2 => "X", 3 => "O", 4 => "X", 5 => "O", 6 => "X", 7 => "O", 8 => "X", 9 => "O"}
+    test_board = %{1 => "1", 2 => "X", 3 => "O", 4 => "X", 5 => "O", 6 => "X", 7 => "O", 8 => "X", 9 => "O", :width => 3}
     args = [
       { Board.new(), false },
       { test_board, false },

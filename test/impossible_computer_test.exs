@@ -4,13 +4,13 @@ defmodule ImpossibleComputerTest do
 
   @player_1 TicTacToe.Player.new("X", ImpossibleComputer)
   @player_2 TicTacToe.Player.new("O", Human)
-  @empty_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9"}
-  @corner_occupied_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "O"}
-  @win_available_board %{1 => "X", 2 => "2", 3 => "X", 4 => "O", 5 => "O", 6 => "6", 7 => "7", 8 => "8", 9 => "9"}
-  @loss_risk_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "X", 6 => "6", 7 => "7", 8 => "O", 9 => "O"}
-  @triangle_risk_board %{1 => "X", 2 => "2", 3 => "3", 4 => "4", 5 => "O", 6 => "6", 7 => "7", 8 => "8", 9 => "O"}
-  @encirclement_risk_board %{1 => "O", 2 => "2", 3 => "3", 4 => "4", 5 => "X", 6 => "6", 7 => "7", 8 => "8", 9 => "O"}
-  @arrowhead_risk_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "O", 9 => "9"}
+  @empty_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "9", :width => 3}
+  @corner_occupied_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "8", 9 => "O", :width => 3}
+  @win_available_board %{1 => "X", 2 => "2", 3 => "X", 4 => "O", 5 => "O", 6 => "6", 7 => "7", 8 => "8", 9 => "9", :width => 3}
+  @loss_risk_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "X", 6 => "6", 7 => "7", 8 => "O", 9 => "O", :width => 3}
+  @triangle_risk_board %{1 => "X", 2 => "2", 3 => "3", 4 => "4", 5 => "O", 6 => "6", 7 => "7", 8 => "8", 9 => "O", :width => 3}
+  @encirclement_risk_board %{1 => "O", 2 => "2", 3 => "3", 4 => "4", 5 => "X", 6 => "6", 7 => "7", 8 => "8", 9 => "O", :width => 3}
+  @arrowhead_risk_board %{1 => "1", 2 => "2", 3 => "3", 4 => "4", 5 => "5", 6 => "6", 7 => "7", 8 => "O", 9 => "9", :width => 3}
 
   test "ImpossibleComputer.get_index/2 picks a corner if the board is empty" do
     game = TicTacToe.Game.new(@empty_board, @player_1, @player_2)
