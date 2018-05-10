@@ -4,18 +4,7 @@ defmodule TicTacToe.Program do
   def run do
     clear_screen()
     Messages.welcome() |> IO.puts()
-    game_type = get_game_type()
-    case game_type do
-      1 -> Game.new(Board.new(3), Player.new("X", Human), Player.new("O", Human)) |> play_game()
-      2 -> Game.new(Board.new(3), Player.new("X", Human), Player.new("O", ImpossibleComputer)) |> play_game()
-      3 -> Game.new(Board.new(3), Player.new("X", ImpossibleComputer), Player.new("O", Human)) |> play_game()
-      4 -> Game.new(Board.new(3), Player.new("X", ImpossibleComputer), Player.new("O", ImpossibleComputer)) |> play_game()
-
-      5 -> Game.new(Board.new(4), Player.new("X", Human), Player.new("O", Human)) |> play_game()
-      6 -> Game.new(Board.new(4), Player.new("X", Human), Player.new("O", EasyComputer)) |> play_game()
-      7 -> Game.new(Board.new(4), Player.new("X", EasyComputer), Player.new("O", Human)) |> play_game()
-      8 -> Game.new(Board.new(4), Player.new("X", EasyComputer), Player.new("O", EasyComputer)) |> play_game()
-    end
+    set_up_game() |> play_game()
   end
 
   def play_game(game) do
@@ -27,6 +16,53 @@ defmodule TicTacToe.Program do
       get_next_move(game)
       |> Game.take_turn(game)
       |> play_game()
+    end
+  end
+
+  def set_up_board do
+    Messages.board_size_prompt() |> IO.puts()
+    selection = IO.gets("> ") |> String.trim()
+    case selection do
+      "1" -> Board.new(3)
+      "2" -> Board.new(4)
+      _else -> set_up_board()
+    end
+  end
+
+  def set_up_computer_difficulty do
+    Messages.difficulty_prompt() |> IO.puts()
+    selection = IO.gets("> ") |> String.trim()
+    case selection do
+      "1" -> EasyComputer
+      "2" -> ImpossibleComputer
+      _else -> set_up_computer_difficulty()
+    end
+  end
+
+  def set_up_game_mode do
+    Messages.game_mode_prompt() |> IO.puts()
+    selection = IO.gets("> ") |> String.trim()
+    case selection do
+      "1" -> :human_v_human
+      "2" -> :human_v_computer
+      "3" -> :computer_v_human
+      "4" -> :computer_v_computer
+      _else -> set_up_game_mode()
+    end
+  end
+
+  def set_up_game do
+    board = set_up_board()
+    game_mode = set_up_game_mode()
+    if game_mode == :human_v_human do
+      Game.new(board, Player.new("X", Human), Player.new("O", Human))
+    else
+      computer = set_up_computer_difficulty()
+      case game_mode do
+        :human_v_computer -> Game.new(board, Player.new("X", Human), Player.new("O", computer))
+        :computer_v_human -> Game.new(board, Player.new("X", computer), Player.new("O", Human))
+        :computer_v_computer -> Game.new(board, Player.new("X", computer), Player.new("O", computer))
+      end
     end
   end
 

@@ -11,25 +11,36 @@ defmodule TicTacToe.Messages do
     end
   end
 
-  def tile_occupied, do: "That tile is already occupied. Please select a free tile..."
-
-  def game_options do
+  def board_size_prompt do
     """
-    Please choose a game type...
+    Please select a board size...
 
-    3 x 3 Games:
+    1. Standard (3x3)
+    2. Large (4x4)
+    """
+  end
+
+  def difficulty_prompt do
+    """
+    Please select a computer difficulty...
+
+    1. Easy
+    2. Unbeatable
+    """
+  end
+
+  def game_mode_prompt do
+    """
+    Please select a game mode...
+
     1. Human vs Human
     2. Human vs Computer
     3. Computer vs Human
     4. Computer vs Computer
-
-    4 x 4 Games:
-    5. Human vs Human
-    6. Human vs Computer
-    7. Computer vs Human
-    8. Computer vs Computer
     """
   end
+
+  def tile_occupied, do: "That tile is already occupied. Please select a free tile..."
 
   def tie_game, do: "Tie game!"
 

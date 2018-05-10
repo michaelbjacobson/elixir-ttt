@@ -51,23 +51,38 @@ defmodule MessagesTest do
     assert actual == expected
   end
 
-  test "Messages.game_options/0 returns a message string containing the numbered game options" do
+  test "Messages.game_mode_prompt/0 returns a message string containing the numbered game options" do
     expected = """
-               Please choose a game type...
+               Please select a game mode...
 
-               3 x 3 Games:
                1. Human vs Human
                2. Human vs Computer
                3. Computer vs Human
                4. Computer vs Computer
-
-               4 x 4 Games:
-               5. Human vs Human
-               6. Human vs Computer
-               7. Computer vs Human
-               8. Computer vs Computer
                """
-    actual = Messages.game_options()
+    actual = Messages.game_mode_prompt()
+    assert actual == expected
+  end
+
+  test "Messages.difficulty_prompt/0 returns a message string containing the numbered computer difficulty options" do
+    expected = """
+               Please select a computer difficulty...
+
+               1. Easy
+               2. Unbeatable
+               """
+    actual = Messages.difficulty_prompt()
+    assert actual == expected
+  end
+
+  test "Messages.board_size_prompt/0 returns a message string containing the numbered board size options" do
+    expected = """
+               Please select a board size...
+
+               1. Standard (3x3)
+               2. Large (4x4)
+               """
+    actual = Messages.board_size_prompt()
     assert actual == expected
   end
 
